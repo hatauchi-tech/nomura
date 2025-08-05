@@ -23,6 +23,8 @@
         .bg-pastel-purple { background-color: #d1c1e1; }
         .diff-plus { color: #198754; font-weight: bold; }
         .diff-minus { color: #dc3545; font-weight: bold; }
+        .manual-section { margin-bottom: 2rem; }
+        .manual-section h2 { border-bottom: 2px solid #dee2e6; padding-bottom: 0.5rem; margin-bottom: 1.5rem; font-size: 1.5rem; }
     </style>
 </head>
 <body>
@@ -203,6 +205,40 @@
             renderStaffList(mockStaff);
             renderStockSummary(mockStockSummary);
             renderHistory(mockHistory);
+            loadManual(); // ★修正: マニュアル読み込み関数を呼び出す
+        }
+        
+        /**
+         * ★修正: 使い方マニュアルのコンテンツを生成する関数を追加
+         */
+        function loadManual() {
+            const manualContainer = document.getElementById('page-manual');
+            if (!manualContainer) return;
+            manualContainer.innerHTML = `
+                <div class="container-lg p-4">
+                    <h1 class="display-5 mb-4">在庫管理システム 運用手順書</h1>
+                    <div class="manual-section">
+                        <h2><i class="bi bi-house-door-fill me-2"></i>ホーム画面</h2>
+                        <p>アプリの入り口です。各機能へ素早くアクセスするためのボタンが設置されています。</p>
+                    </div>
+                    <div class="manual-section">
+                        <h2><i class="bi bi-table me-2"></i>在庫一覧</h2>
+                        <p>現在の全製品の在庫数をリアルタイムで確認できます。</p>
+                    </div>
+                    <div class="manual-section">
+                        <h2><i class="bi bi-arrow-down-up me-2"></i>入庫・出庫の登録</h2>
+                        <p>製品の入出庫を記録します。この操作により在庫数が自動で更新されます。</p>
+                    </div>
+                    <div class="manual-section">
+                        <h2><i class="bi bi-clipboard2-check me-2"></i>棚卸</h2>
+                        <p><strong>棚卸登録</strong>画面で実際にある在庫数を入力し、<strong>棚卸レポート</strong>画面で理論在庫との差異を確認・確定します。</p>
+                    </div>
+                     <div class="manual-section">
+                        <h2><i class="bi bi-bug-fill me-2"></i>不具合報告</h2>
+                        <p>アプリの動作におかしな点があった場合、こちらから報告をお願いします。</p>
+                    </div>
+                </div>
+            `;
         }
         
         function renderAllPages() {
